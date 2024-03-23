@@ -73,4 +73,5 @@ package-lock.json
 
 # nix build
 result
+Parsynt
 
