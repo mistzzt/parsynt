@@ -71,4 +71,6 @@ all.sh
 node_modules
 package-lock.json
 
+# nix build
+result
 

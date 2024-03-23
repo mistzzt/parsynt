@@ -26,6 +26,10 @@
  (depends
   (base
    (>= v0.14.0))
+  (camlp-streams
+   (>= 5.0.1))
+  (core
+   (= v0.15.1))
   (fileutils
    (>= 0.6.3))
   (fmt

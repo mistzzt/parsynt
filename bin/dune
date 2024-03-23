@@ -1,3 +1,4 @@
 (executable
+ (public_name Parsynt)
  (name Parsynt)
  (libraries Lib fmt base parsexp compiler-libs sexplib getopt))

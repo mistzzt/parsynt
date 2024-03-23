@@ -145,7 +145,7 @@ let rec simplify_term ?(solver = None) ?(assume = []) ?(strategy = "default") (t
   | "blast_max" -> rebuild_max (simplify_cond ~solver ~assume (blast_max t))
   | _ -> failhere Caml.__FILE__ "simplify_term" "Not a valid strategy."
 
-and simplify_mcnf ?(solver = None) ~assume:(assumptions : term list) ~mcnf:(m : mcnf) : term =
+and simplify_mcnf ~solver ~assume:(assumptions : term list) ~mcnf:(m : mcnf) : term =
   (* Remove unreachable branches *)
   let reachable_mcnf _e =
     let cnd_implied (cnd, _) =
