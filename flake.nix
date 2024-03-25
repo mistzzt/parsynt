@@ -2,11 +2,8 @@
   description = "Automatic parallel divide-and-conquer programs synthesizer";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    opam-nix = {
-      url = "github:tweag/opam-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    opam-nix.url = "github:tweag/opam-nix";
+    nixpkgs.follows = "opam-nix/nixpkgs";
   };
 
   outputs = {
