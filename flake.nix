@@ -41,6 +41,8 @@
           echo "let base = \"$out\"" >> $project_dir_src_path
           echo "let src = \"$out/src/\"" >> $project_dir_src_path
           echo "let templates = \"$out/src/templates/\"" >> $project_dir_src_path
+          echo "let racket = \"${pkgs.racket}/bin/racket\"" >> $project_dir_src_path
+          echo "let z3 = \"${pkgs.z3}/bin/z3\"" >> $project_dir_src_path
         '';
       });
       default = self.packages.${system}.parsynt;

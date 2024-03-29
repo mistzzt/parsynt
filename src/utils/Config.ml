@@ -101,9 +101,9 @@ let num_parallel_processes = 4
 let timeout_sfsp_synt = 100
 
 (* Programs : TODO *)
-let racket = FileUtil.which "racket"
+let racket = Project_dir.racket
 
-let z3 = FileUtil.which "z3"
+let z3 = Project_dir.z3
 
 let tmp_dir = Caml.Filename.get_temp_dir_name ()
 
