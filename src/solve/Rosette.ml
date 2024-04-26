@@ -295,7 +295,7 @@ let exec_solver (filenames : (string * string) list) : (string * Sexp.t list) op
     List.map ~f:(fun (otf, proc) -> Lwt.map (fun x -> proc_status proc x otf) proc#status) processes
   in
   let resps = Lwt_main.run (Lwt.all cp) in
-  List.iter ~f:(fun (_, outf) -> try Caml.Sys.remove outf with _ -> ()) filenames;
+  List.iter ~f:(fun (_, outf) -> try () with _ -> ()) filenames;
   resps
 
 let check_exit_status = function
@@ -361,7 +361,7 @@ let unix_parallel_exec_solver (filenames : (string * string) list) : (string * S
   in
   Unix.sleepf 0.05;
   let res = loop_over_processes processes in
-  List.iter ~f:(fun (_, outf) -> try Caml.Sys.remove outf with _ -> ()) filenames;
+  List.iter ~f:(fun (_, outf) -> try () with _ -> ()) filenames;
   res
 
 (**

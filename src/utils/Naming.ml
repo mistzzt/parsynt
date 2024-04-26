@@ -30,7 +30,7 @@ let remove_in_dir dirname =
       let complete_fn = Array.map ~f:(fun s -> dirname ^ s) filenames in
       Array.iter
         ~f:(fun filename ->
-          if Stdlib.Sys.is_directory filename then () else Stdlib.Sys.remove filename)
+          if Stdlib.Sys.is_directory filename then () else ())
         complete_fn
     else raise (Sys_error "Not a directory name")
   with Sys_error s -> eprintf "Remove_in_dir : %s" s

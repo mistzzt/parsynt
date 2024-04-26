@@ -52,7 +52,7 @@ let remove_in_dir dirname =
       let filenames = Sys.readdir dirname in
       let complete_fn = Array.map (fun s -> dirname ^ s) filenames in
       Array.iter
-        (fun filename -> if Sys.is_directory filename then () else Sys.remove filename)
+        (fun filename -> if Sys.is_directory filename then () else ())
         complete_fn
     else raise (Sys_error "Not a directory name")
   with Sys_error s -> eprintf "Remove_in_dir : %s" s
@@ -115,11 +115,9 @@ let compile ?(solver = rosette) ?(print_err_msg = default_error) (timeout : int)
         Log.error_msg (Fmt.str "[ERROR] Errno : %i@." errno);
         if !debug then print_err_msg errno;
         (* ignore(Sys.command ("cat "^sketch_tmp_file)); *)
-        Sys.remove sketch_tmp_file;
         exit 1)
     else false
   in
-  Sys.remove sketch_tmp_file;
   (continue, elapsed, solution_tmp_file)
 
 let fetch_solution ?(solver = rosette) filename =
@@ -141,7 +139,6 @@ let fetch_solution ?(solver = rosette) filename =
               eprintf "Failure while parsing %s with simplify_parse_scm.@." filename;
               raise e)
       in
-      Sys.remove filename;
       parsed
   (* TODO *)
   | "CVC4" -> [ RAst.Int_e (-1) ]

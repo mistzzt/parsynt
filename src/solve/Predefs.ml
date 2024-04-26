@@ -5,7 +5,8 @@ open Lang.Typ
 let pp_lang_def_rosette (form : Formatter.t) () =
   pf form "#lang rosette@.";
   pf form "@.";
-  pf form "(require rosette/lib/synthax)"
+  pf form "(require rosette/lib/synthax)@.";
+  pf form "(require rosette/solver/smt/cvc5)"
 
 let pp_newline (form : Formatter.t) () =
   pf form "@."
@@ -34,6 +35,7 @@ let pre_pp_struct_defs fout struct_types =
 
 
 let pp_output_sketch_to_file ~(file_out : string) ~(obj : string) fout () =
+  pf fout "@.(current-solver (cvc5))@.";
   pf fout
     "@.(define output-file (open-output-file \"%s\" #:exists 'truncate))@."
     file_out;
