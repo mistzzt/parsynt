@@ -59,6 +59,10 @@
             racket
             z3
             python311
+            cvc5
+
+            ocamlformat
+            ocaml-ng.ocamlPackages_5_0.ocaml-lsp
           ]
           ++ lib.optionals stdenv.isDarwin [
             darwin.apple_sdk.frameworks.CoreServices
@@ -72,7 +76,16 @@
           raco pkg install src/synthools
 
           mkdir -p ~/.local/share/racket/8.10/pkgs/rosette/bin/
-          ln -s ${pkgs.z3}/bin/z3 ~/.local/share/racket/8.10/pkgs/rosette/bin/z3
+          ln -s ${pkgs.z3}/bin/z3 ~/.local/share/racket/8.10/pkgs/rosette/bin/z3 || true
+
+          project_dir_src_path=$PWD/src/utils/Project_dir.ml
+          rm $project_dir_src_path || true
+          touch $project_dir_src_path
+          echo "let base = \"$PWD\"" >> $project_dir_src_path
+          echo "let src = \"$PWD/src/\"" >> $project_dir_src_path
+          echo "let templates = \"$PWD/src/templates/\"" >> $project_dir_src_path
+          echo "let racket = \"${pkgs.racket}/bin/racket\"" >> $project_dir_src_path
+          echo "let z3 = \"${pkgs.z3}/bin/z3\"" >> $project_dir_src_path
         '';
       };
     });
