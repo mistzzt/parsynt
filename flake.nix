@@ -26,7 +26,7 @@
 
       parsynt =
         (buildDuneProject {} "Parsynt" ./. {
-          ocaml-base-compiler = "*";
+          ocaml-base-compiler = "5.0.0";
         })
         .Parsynt;
     in {
@@ -61,8 +61,7 @@
             python311
             cvc5
 
-            ocamlformat
-            ocamlPackages.ocaml-lsp
+            ocaml-ng.ocamlPackages_5_0.ocaml-lsp
           ]
           ++ lib.optionals stdenv.isDarwin [
             darwin.apple_sdk.frameworks.CoreServices
