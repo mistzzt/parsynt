@@ -62,7 +62,7 @@
             cvc5
 
             ocamlformat
-            ocaml-ng.ocamlPackages_5_0.ocaml-lsp
+            ocaml-lsp
           ]
           ++ lib.optionals stdenv.isDarwin [
             darwin.apple_sdk.frameworks.CoreServices
